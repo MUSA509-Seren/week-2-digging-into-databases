@@ -38,12 +38,11 @@ About the dataset, notice the schema梗概:
 
 Use the PostGIS function [`ST_Area`](https://postgis.net/docs/ST_Area.html). Since our geometries are in WGS84, we need to use `geography` type casting (`the_geom::geography`).
 
-```SQL
--- SELECT avg(ST_Area(the_geom::geography)) 
+```
+SELECT avg(ST_Area(the_geom::geography)) 
 FROM "seren-sx".university_city_osm_buildings
 ```
-
-## Result:1730.416431997879
+##### Result:1730.416431997879
 
 ## Find Average Area (in square meters) of buildings by type
 
@@ -53,29 +52,40 @@ Write a query to give:
 * average area of building by type
 * count of buildings of this type
 
-```SQL
--- Enter your SQL query here
+```
+SELECT building_type, avg(ST_Area(the_geom::geography)),COUNT (*) as num_types
+FROM "seren-sx".university_city_osm_buildings
+GROUP BY building_type
 ```
 
 ## Which university building is largest? Smallest?
 
 Which building is largest?
 
-```SQL
--- Enter your SQL query here
 ```
+SELECT name, ST_Area(the_geom::geography)
+FROM "seren-sx".university_city_osm_buildings            
+ORDER BY ST_Area(the_geom::geography) DESC
+```
+##### Result:Philadelphia - 30th Street Station
 
 Which building is smallest?
 
-```SQL
--- Enter your SQL query here
 ```
+SELECT name, ST_Area(the_geom::geography)
+FROM "seren-sx".university_city_osm_buildings            
+ORDER BY ST_Area(the_geom::geography) ASC
+```
+##### Result:null name
 
 ## What is the area (in square meters) of Meyerson Hall?
 
-```SQL
--- Enter your SQL query here
 ```
+SELECT name, ST_Area(the_geom::geography)
+FROM "seren-sx".university_city_osm_buildings            
+WHERE name = 'Meyerson Hall'
+```
+##### Result:1467.0136541037355
 
 ## Find the 10 closest buildings to Meyerson Hall
 

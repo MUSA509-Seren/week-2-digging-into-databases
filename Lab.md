@@ -15,7 +15,7 @@
 
 I fetched this data from GeoFabrik's wonderful OSM download service. I downloaded the [Pennsylvania](https://download.geofabrik.de/north-america/us/pennsylvania.html) file and filtered to only included building footprints that land in University City in Philadelphia.
 
-About the dataset, notice the schema:
+About the dataset, notice the schema梗概:
 
 - `cartodb_id` (number, actually an integer): Carto adds this as a utility for optimizing performance of this table. It wasn't in the original dataset.
 - `the_geom` (geometry): Carto uses `the_geom` for the geometry column. In the GeoJSON it was `geometry` as per the [GeoJSON specification](https://geojson.org/).

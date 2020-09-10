@@ -39,8 +39,11 @@ About the dataset, notice the schema梗概:
 Use the PostGIS function [`ST_Area`](https://postgis.net/docs/ST_Area.html). Since our geometries are in WGS84, we need to use `geography` type casting (`the_geom::geography`).
 
 ```SQL
--- Enter your query here
+-- SELECT avg(ST_Area(the_geom::geography)) 
+FROM "seren-sx".university_city_osm_buildings
 ```
+
+## Result:1730.416431997879
 
 ## Find Average Area (in square meters) of buildings by type
 

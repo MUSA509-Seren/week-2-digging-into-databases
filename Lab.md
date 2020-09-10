@@ -38,7 +38,7 @@ About the dataset, notice the schema梗概:
 
 Use the PostGIS function [`ST_Area`](https://postgis.net/docs/ST_Area.html). Since our geometries are in WGS84, we need to use `geography` type casting (`the_geom::geography`).
 
-```
+```SQL
 SELECT avg(ST_Area(the_geom::geography)) 
 FROM "seren-sx".university_city_osm_buildings
 ```
@@ -52,7 +52,7 @@ Write a query to give:
 * average area of building by type
 * count of buildings of this type
 
-```
+```SQL
 SELECT building_type, avg(ST_Area(the_geom::geography)),COUNT (*) as num_types
 FROM "seren-sx".university_city_osm_buildings
 GROUP BY building_type
@@ -62,7 +62,7 @@ GROUP BY building_type
 
 Which building is largest?
 
-```
+```SQL
 SELECT name, ST_Area(the_geom::geography)
 FROM "seren-sx".university_city_osm_buildings            
 ORDER BY ST_Area(the_geom::geography) DESC
@@ -71,7 +71,7 @@ ORDER BY ST_Area(the_geom::geography) DESC
 
 Which building is smallest?
 
-```
+```SQL
 SELECT name, ST_Area(the_geom::geography)
 FROM "seren-sx".university_city_osm_buildings            
 ORDER BY ST_Area(the_geom::geography) ASC
@@ -80,7 +80,7 @@ ORDER BY ST_Area(the_geom::geography) ASC
 
 ## What is the area (in square meters) of Meyerson Hall?
 
-```
+```SQL
 SELECT name, ST_Area(the_geom::geography)
 FROM "seren-sx".university_city_osm_buildings            
 WHERE name = 'Meyerson Hall'
